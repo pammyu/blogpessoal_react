@@ -1,89 +1,30 @@
-import React from 'react'
-
 function Home() {
-    return (
-        <>
-            <div style={{
-                backgroundColor: '#fb6da6',
-                display: 'flex',
-                justifyContent: 'center'
-            }}
-        > 
-            <div 
-                style={{
-                    display: 'grid',
-                    gridTemplateColumns: '1fr 1fr',
-                    color: 'white',
-                    width: '100%',
-                    maxWidth: '1280px',
-                }}
-            > 
-                <div
-                    style={{
-                        display: 'flex',
-                        flexDirection: 'column',
-                        gap: '1rem',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        paddingTop: '1rem',
-                        paddingBottom: '1rem'
-                    }}
-                >
-                    <h2
-                        style={{
-                            fontSize: '3rem',
-                            fontWeight: 'bold'
-                        }}
-                    > 
-                        Seja Bem-Vinde!
-                    </h2>
+  return (
+    <>
+      <main className="bg-pink-300 flex justify-center">
+        <section className="container grid grid-cols-2 text-white">
+          <article className="flex flex-col gap-4 items-center justify-center py-4">
+              <h2 className="text-center text-5xl font-bold leading-tight">
+                Seja bem-vindo ao Blog Pam.devlog!
+                </h2>
+                
+              <p className="text-xl">
+                Criando, testando e aprendendo em público.
+                </p>
 
-                    <p
-                        style={{
-                            fontSize: '1.25rem',
-                        }}
-                    >
-                        Expresse aqui seus pensamentos e opiniões
-                    </p>
-                    
-                    <div 
-                        style={{
-                            display: 'flex',
-                            justifyContent: 'space-around',
-                            gap: '1rem'
-                        }}
-                    >
-                        <div
-                            style={{
-                                borderRadius: '0.5rem',
-                                color: 'white',
-                                border: '2px solid white',
-                                padding: '0.5rem 1rem'
-                            }}
-                        >
-                            Nova Postagem
-                        </div>
-                    </div>
-                </div>           
-        
-                <div
-                    style={{
-                        display: 'flex',
-                        justifyContent: 'center',
-                    }}
-                >
-                        <img
-                            src='https://i.imgur.com/fyfri1v.png'
-                            alt='Imagem Página Home'
-                            style={{
-                                width: '66%'
-                            }}
-                        />
-                    </div>
-                </div>
-            </div>
-        </>
-    )
+                <button className="flex justify-around gap-4 rounded text-white border-white border-solid border-2 py-2 px-4">
+                  Nova Postagem
+                </button>
+
+          </article>
+
+          <figure className="flex justify-center">
+            <img src="https://cdni.iconscout.com/illustration/premium/thumb/female-web-developer-working-on-project-illustration-svg-download-png-4759502.png" alt="Imagem Página Home" className="w-2/3"/>
+          </figure>
+
+        </section>
+      </main>
+    </>
+  );
 }
-
-export default Home
+export default Home;

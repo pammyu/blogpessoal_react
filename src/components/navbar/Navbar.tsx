@@ -1,17 +1,20 @@
+import { Link } from "react-router-dom"
+
 function Navbar() {
     return (
         <>
-            <div className="w-full flex justify-center py-4 bg-pink-200 text-pink-400">
+            <div className="w-full flex justify-center py-4 bg-pink-300 text-white">
 
                 <div className="container flex justify-between text-lg mx-8">
-                    Blog Pessoal
+                    <Link to="/home" className="text-2x1 font-bold">Blog Código em Processo</Link>
 
-                    <div className="flex gap-4">
-                        Postagens 
-                        Temas 
-                        Cadastrar tema
-                        Perfil 
-                        Sair
+                    <div className="flex gap-6">
+                        <Link to="/postagens">Postagens</Link>
+                        <Link to="/temas">Temas</Link>
+                        <Link to="/cadastrar-tema">Cadastrar Tema</Link>
+                        <Link to="/perfil">Perfil</Link>
+                        <Link to="/sair">Sair</Link>
+                        
                     </div>
                 </div>
             </div>

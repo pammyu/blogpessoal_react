@@ -32,7 +32,10 @@ export function AuthProvider({children}: AuthProviderProps) {
     async function handleLogin(usuarioLogin: UsuarioLogin) {
         setIsLoading(true)
         try {
-            await login('/usuarios/logar', usuarioLogin, setUsuario)
+            await login('/usuarios/logar', usuarioLogin, (data: UsuarioLogin) => { 
+                setUsuario(data)
+                localStorage.setItem('token', data.token)
+            })
             alert('Login feito com sucesso!')
         } catch (error) {
             alert('Erro ao logar! Verifique os dados informados.')
@@ -49,6 +52,7 @@ export function AuthProvider({children}: AuthProviderProps) {
             foto: '',
             token: ''   
         })     
+        localStorage.removeItem('token')
     }
 
     return (

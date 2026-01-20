@@ -21,8 +21,8 @@ function Navbar() {
 
                     <div className="flex gap-6">
                         <Link to="/postagens">Postagens</Link>
-                        <Link to="/temas">Temas</Link>
-                        <Link to="/cadastrar-tema">Cadastrar Tema</Link>
+                        <Link to={'/temas'} className="hover:underline">Temas</Link>
+                        <Link to="/cadastrartema" className="hover:underline">Cadastrar Tema</Link>
                         <Link to="/perfil">Perfil</Link>
                         <Link to="" onClick={sair} className="hover:text-pink-700">Sair</Link>
                         

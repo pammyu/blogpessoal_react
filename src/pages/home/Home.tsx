@@ -1,3 +1,5 @@
+import ListaPostagem from '../../components/postagem/listapostagem/ListaPostagem';
+import ModalPostagem from '../../components/postagem/modalpostagem/ModalPostagem';
 import BannerHome from './Banner.png'
 
 function Home() {
@@ -5,19 +7,16 @@ function Home() {
     <>
       <main className=" w-full min-h-screen bg-pink-200 flex justify-center">
         <section className="container grid grid-cols-2 text-white">
-          <article className="text-pink-600 flex flex-col gap-4 items-center justify-center py-4">
+          <article className=" text-2xl font-bold bg-gradient-to-r from-pink-400 to-purple-400 bg-clip-text text-transparent to-purple-300 flex flex-col gap-4 items-center justify-center py-4">
               <h2 className="text-center text-5xl font-bold leading-tight">
                 Seja bem-vindo ao Blog Pink Code!
                 </h2>
                 
-              <p className="text-pink-600 text-xl">
+              <p className="text-purple-500 text-xl">
                 Onde aprender também faz parte do código 💗
-                </p>
+                </p>      
 
-                <button className="flex justify-around gap-4 roundedtext-pink-600 border-pink-600 border-solid border-2 py-2 px-4">
-                  Nova Postagem
-                </button>
-
+              <ModalPostagem />
           </article>
 
           <figure className="flex justify-center items-center">
@@ -26,6 +25,9 @@ function Home() {
 
         </section>
       </main>
+
+
+      <ListaPostagem />
     </>
   );
 }

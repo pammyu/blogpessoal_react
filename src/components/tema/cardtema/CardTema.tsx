@@ -8,7 +8,7 @@ interface CardTemaProps {
 function CardTema({ tema }: CardTemaProps) {
     return (
         <div className='flex flex-col justify-between rounded-2xl overflow-hidden border border-slate-200 bg-white shadow-sm hover:shadow-lg transition-shadow duration-300'>
-            <header className='px-6 py-4 bg-gradient-to-r from-purple-400 to-pink-400 text-white'>
+            <header className='px-6 py-4 bg-purple-400 text-white'>
                 <h2 className="text-lg font-semibold tracking-wide">
                     {tema.descricao}
                 </h2>
@@ -26,7 +26,7 @@ function CardTema({ tema }: CardTemaProps) {
                     <button>Editar</button>
                 </Link>
 
-                <Link to={`/deletartema/${tema.id}`} className="flex-1 py-3 text-center font-medium text-pink-500 hover:bg-pink-50">
+                <Link to={`/deletartema/${tema.id}`} className="flex-1 py-3 text-center font-medium text-pink-400 hover:bg-pink-50">
                     Deletar
                 </Link>
             </div>

@@ -14,17 +14,17 @@ function Navbar() {
 
     return (
         <>
-            <div className="w-full flex justify-center py-4 bg-pink-300 text-white">
+            <div className="w-full flex justify-center py-4 bg-gradient-to-r from-pink-400 to-purple-400 text-white">
 
                 <div className="container flex justify-between text-lg mx-8">
                     <Link to="/home" className="text-2x1 font-bold">Blog Pink Code</Link>
 
                     <div className="flex gap-6">
-                        <Link to="/postagens">Postagens</Link>
+                        <Link to='/postagens' className='hover:underline'>Postagens</Link>
                         <Link to={'/temas'} className="hover:underline">Temas</Link>
                         <Link to="/cadastrartema" className="hover:underline">Cadastrar Tema</Link>
                         <Link to="/perfil">Perfil</Link>
-                        <Link to="" onClick={sair} className="hover:text-pink-700">Sair</Link>
+                        <Link to="" onClick={sair} className="hover:underline">Sair</Link>
                         
                     </div>
                 </div>

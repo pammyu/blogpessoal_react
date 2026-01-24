@@ -1,143 +1,134 @@
-import { useContext, useEffect, useState, type ChangeEvent, type FormEvent } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import { ClipLoader } from "react-spinners";
-import { AuthContext } from "../../../contexts/AuthContext";
-import type Tema from "../../../models/Tema";
-import { atualizar, buscar, cadastrar } from "../../../services/Service";
+import { useContext, useEffect, useState, type ChangeEvent, type FormEvent } from "react"
+import { useNavigate, useParams } from "react-router-dom"
+import { ClipLoader } from "react-spinners"
+import { AuthContext } from "../../../contexts/AuthContext"
+import type Tema from "../../../models/Tema"
+import { atualizar, buscar, cadastrar } from "../../../services/Service"
+import { ToastAlerta } from "../../../utils/ToastAlerta"
 
 function FormTema() {
+  const navigate = useNavigate()
 
-    const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false)
+  const [tema, setTema] = useState<Tema>({ id: 0, titulo: "", descricao: "" })
 
-    const [tema, setTema] = useState<Tema>({} as Tema);
-    const [isLoading, setIsLoading] = useState<boolean>(false);
+  const { id } = useParams<{ id: string }>()
+  const { usuario, handleLogout } = useContext(AuthContext)
+  const token = usuario.token
 
-    const { usuario, handleLogout } = useContext(AuthContext);
-    const token = usuario.token;
-
-    const { id } = useParams<{ id: string }>();
-
-    async function buscarPorId(id: string) {
-        try {
-            await buscar(`/temas/${id}`, setTema, {
-                headers: { Authorization: token }
-            });
-        } catch (error: any) {
-            if (error.toString().includes("403")) {
-                handleLogout();
-            }
-        }
+  async function buscarTemaPorId(id: string) {
+    try {
+      await buscar(`/temas/${id}`, setTema, { headers: { Authorization: token } })
+    } catch (error: any) {
+      if (error?.toString().includes("401")) {
+        ToastAlerta("Sessão expirada. Faça login novamente!", "info")
+        handleLogout()
+      } else {
+        ToastAlerta("Erro ao buscar tema!", "erro")
+      }
     }
+  }
 
-    useEffect(() => {
-        if (token === "") {
-            alert("Você precisa estar logado!");
-            navigate("/");
-        }
-    }, [token]);
-
-    useEffect(() => {
-        if (id !== undefined) {
-            buscarPorId(id);
-        }
-    }, [id]);
-
-    function atualizarEstado(e: ChangeEvent<HTMLInputElement>) {
-        setTema({
-            ...tema,
-            [e.target.name]: e.target.value
-        });
+  useEffect(() => {
+    if (token === "") {
+      ToastAlerta("Você precisa estar logado!", "info")
+      navigate("/")
+      return
     }
+  }, [token, navigate])
 
-    function retornar() {
-        navigate("/temas");
+  useEffect(() => {
+    if (id) buscarTemaPorId(id)
+  }, [id])
+
+  function atualizarEstado(e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
+    setTema((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }))
+  }
+
+  function retornar() {
+    navigate("/temas")
+  }
+
+  async function salvarTema(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault()
+    setIsLoading(true)
+
+    try {
+      if (id) {
+        await atualizar("/temas", tema, setTema, { headers: { Authorization: token } })
+        ToastAlerta("Tema atualizado com sucesso!", "sucesso")
+      } else {
+        await cadastrar("/temas", tema, setTema, { headers: { Authorization: token } })
+        ToastAlerta("Tema cadastrado com sucesso!", "sucesso")
+      }
+      retornar()
+    } catch (error: any) {
+      if (error?.toString().includes("401")) {
+        ToastAlerta("Sessão expirada. Faça login novamente!", "info")
+        handleLogout()
+      } else {
+        ToastAlerta("Erro ao salvar o tema!", "erro")
+      }
+    } finally {
+      setIsLoading(false)
     }
+  }
 
-    async function gerarNovoTema(e: FormEvent<HTMLFormElement>) {
-        e.preventDefault();
-        setIsLoading(true);
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-pink-100 px-4">
+      <div className="bg-white rounded-2xl shadow-xl p-8 w-full max-w-md">
+        <h1 className="text-3xl font-bold text-purple-500 text-center mb-6">
+          {id ? "Editar Tema" : "Cadastrar Tema"}
+        </h1>
 
-        try {
-            if (id !== undefined) {
-                await atualizar(`/temas`, tema, setTema, {
-                    headers: { Authorization: token }
-                });
-                alert("O Tema foi atualizado com sucesso!");
-            } else {
-                await cadastrar(`/temas`, tema, setTema, {
-                    headers: { Authorization: token }
-                });
-                alert("O Tema foi cadastrado com sucesso!");
-            }
-        } catch (error: any) {
-            if (error.toString().includes("401") || error.toString().includes("403")) {
-                handleLogout();
-            } else {
-                alert("Erro ao salvar o tema.");
-            }
-        }
+        <form onSubmit={salvarTema} className="flex flex-col gap-4">
+          <div className="flex flex-col gap-2">
+            <label className="text-purple-500 font-semibold">Título</label>
+            <input
+              type="text"
+              name="titulo"
+              value={tema.titulo}
+              onChange={atualizarEstado}
+              required
+              placeholder="Ex: Tecnologia, Front-end..."
+              className="border-2 border-purple-200 rounded-xl px-4 py-3 focus:ring-2 focus:ring-pink-300 outline-none"
+            />
+          </div>
 
-        setIsLoading(false);
-        retornar();
-    }
+          <div className="flex flex-col gap-2">
+            <label className="text-purple-500 font-semibold">Descrição</label>
+            <textarea
+              name="descricao"
+              value={tema.descricao}
+              onChange={atualizarEstado}
+              required
+              placeholder="Escreva uma descrição para o tema..."
+              className="border-2 border-purple-200 rounded-xl px-4 py-3 min-h-28 resize-none focus:ring-2 focus:ring-pink-300 outline-none"
+            />
+          </div>
 
-    return (
-        <div className="min-h-screen flex items-center justify-center bg-pink-100 px-4">
-            <div className="w-full max-w-lg bg-white rounded-2xl shadow-lg p-8">
-                
-                <h1 className="text-3xl font-bold text-center text-purple-600 mb-6">
-                    {id === undefined ? "Cadastrar Tema" : "Editar Tema"}
-                </h1>
+          <button
+            type="submit"
+            disabled={isLoading}
+            className="bg-gradient-to-r from-pink-400 to-purple-400 text-white font-bold py-3 rounded-2xl mt-2 hover:from-pink-500 hover:to-purple-500 transition-all duration-300 shadow-md flex justify-center"
+          >
+            {isLoading ? <ClipLoader color="#fff" size={22} /> : <span>{id ? "Atualizar" : "Cadastrar"}</span>}
+          </button>
 
-                <form 
-                    className="w-full flex flex-col gap-6"
-                    onSubmit={gerarNovoTema}
-                >
-                    <div className="flex flex-col gap-2">
-                        <label 
-                            htmlFor="descricao"
-                            className="text-sm font-semibold text-purple-500 text-center"
-                        >
-                            Descrição do Tema
-                        </label>
-
-                        <input
-                            type="text"
-                            placeholder="Descreva aqui seu tema"
-                            name="descricao"
-                            className="
-                                border-2 border-pink-300 rounded-xl
-                                px-4 py-3
-                                focus:outline-none focus:ring-2 focus:ring-pink-300
-                                transition
-                            "
-                            value={tema.descricao}
-                            onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
-                        />
-                    </div>
-
-                    <button
-                        type="submit"
-                        className="
-                            w-full rounded-xl px-6 py-3
-                            bg-gradient-to-r from-pink-400 to-purple-400
-                            text-white font-bold
-                            hover:from-pink-500 hover:to-purple-500
-                            transition-all duration-300
-                            shadow-md
-                            flex items-center justify-center
-                        "
-                    >
-                        {isLoading ? (
-                            <ClipLoader color="#ffffff" size={24} />
-                        ) : (
-                            <span>{id === undefined ? "Cadastrar" : "Atualizar"}</span>
-                        )}
-                    </button>
-                </form>
-            </div>
-        </div>
-    );
+          <button
+            type="button"
+            onClick={retornar}
+            className="w-full py-3 rounded-2xl border border-zinc-200 text-zinc-700 font-semibold hover:bg-zinc-50 transition"
+          >
+            Cancelar
+          </button>
+        </form>
+      </div>
+    </div>
+  )
 }
 
-export default FormTema;
+export default FormTema

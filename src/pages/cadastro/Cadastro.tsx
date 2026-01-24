@@ -4,6 +4,7 @@ import { ClipLoader } from "react-spinners";
 import type Usuario from "../../models/Usuario";
 import { cadastrarUsuario } from "../../services/Service";
 import CadastroImg from "./Art-Cadastro.png";
+import { ToastAlerta } from "../../utils/ToastAlerta"
 
 function Cadastro() {
 
@@ -51,9 +52,10 @@ function Cadastro() {
 
             try {
                 await cadastrarUsuario('/usuarios/cadastrar', usuario, setUsuario)
-                alert('Usuário cadastrado com sucesso!')
+                ToastAlerta("Usuário cadastrado com sucesso!", "sucesso")
+                navigate("/login")
             } catch (error) {
-                alert('Erro ao cadastrar usuário! Tente novamente.')
+                ToastAlerta("Erro ao cadastrar usuário!", "erro")
             }
         } else {
             alert('Dados do usuário inconsistentes! Verifique as informações do cadastro.')

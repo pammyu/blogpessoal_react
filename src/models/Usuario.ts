@@ -5,6 +5,6 @@ export default interface Usuario {
     nome: string
     usuario: string
     foto: string
-    senha: string
+    senha?: string
     postagem?: Postagem[] | null
 }

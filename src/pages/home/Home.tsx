@@ -9,6 +9,7 @@ function Home() {
         <section className="container grid grid-cols-2 text-white">
           <article className=" text-2xl font-bold bg-gradient-to-r from-pink-400 to-purple-400 bg-clip-text text-transparent to-purple-300 flex flex-col gap-4 items-center justify-center py-4">
               <h2 className="text-center text-5xl font-bold leading-tight">
+                
                 Seja bem-vindo ao Blog Pink Code!
                 </h2>
                 

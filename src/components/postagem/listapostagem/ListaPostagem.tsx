@@ -3,7 +3,7 @@ import CardPostagem from "../cardpostagem/CardPostagem"
 import type Postagem from "../../../models/Postagem"
 import { useContext, useEffect, useState } from "react"
 import { AuthContext } from "../../../contexts/AuthContext"
-import { buscar } from "../../../services/Service"
+import { buscar } from "../../../services/api"
 import { SyncLoader } from "react-spinners"
 import { ToastAlerta } from "../../../utils/ToastAlerta"
 

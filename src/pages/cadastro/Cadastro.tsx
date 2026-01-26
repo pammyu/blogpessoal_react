@@ -2,7 +2,7 @@ import { useState, useEffect, type ChangeEvent, type FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import { ClipLoader } from "react-spinners";
 import type Usuario from "../../models/Usuario";
-import { cadastrarUsuario } from "../../services/Service";
+import { cadastrarUsuario } from "../../services/api";
 import CadastroImg from "./Art-Cadastro.png";
 import { ToastAlerta } from "../../utils/ToastAlerta"
 

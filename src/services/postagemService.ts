@@ -1,4 +1,4 @@
-import { api } from "../services/api"
+import { api } from "./api"
 import type Postagem from "../models/Postagem"
 
 export async function listarPostagensPorUsuario(idUsuario: number, token: string) {

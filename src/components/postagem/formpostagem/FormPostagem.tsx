@@ -4,7 +4,7 @@ import { ClipLoader } from "react-spinners"
 import { AuthContext } from "../../../contexts/AuthContext"
 import type Postagem from "../../../models/Postagem"
 import type Tema from "../../../models/Tema"
-import { buscar, atualizar, cadastrar } from "../../../services/Service"
+import { buscar, atualizar, cadastrar } from "../../../services/api"
 import { ToastAlerta } from "../../../utils/ToastAlerta"
 
 type Modo = "page" | "modal"

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom"
 import { SyncLoader } from "react-spinners"
 import { AuthContext } from "../../../contexts/AuthContext"
 import type Tema from "../../../models/Tema"
-import { buscar } from "../../../services/Service"
+import { buscar } from "../../../services/api"
 import CardTema from "../cardtema/CardTema"
 import { ToastAlerta } from "../../../utils/ToastAlerta"
 

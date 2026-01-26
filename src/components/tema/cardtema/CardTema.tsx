@@ -11,7 +11,7 @@ function CardTema({ tema }: CardTemaProps) {
       
       <header className="px-6 py-4 bg-gradient-to-r from-purple-400 to-pink-400 text-white">
         <h2 className="text-lg font-semibold tracking-wide">
-          {tema.titulo}
+          Tema
         </h2>
       </header>
 

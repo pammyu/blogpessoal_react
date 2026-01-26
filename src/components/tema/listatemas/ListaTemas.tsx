@@ -16,16 +16,6 @@ function ListaTemas() {
   const { usuario, handleLogout } = useContext(AuthContext)
   const token = usuario.token
 
-  useEffect(() => {
-    if (token === "") {
-      ToastAlerta("Você precisa estar logado!", "info")
-      navigate("/")
-      return
-    }
-
-    buscarTemas()
-  }, [token])
-
   async function buscarTemas() {
     try {
       setIsLoading(true)
@@ -44,6 +34,16 @@ function ListaTemas() {
       setIsLoading(false)
     }
   }
+
+  useEffect(() => {
+    if (token === "") {
+      ToastAlerta("Você precisa estar logado!", "info")
+      navigate("/")
+      return
+    }
+
+    buscarTemas()
+  }, [token, navigate, handleLogout])
 
   return (
     <>

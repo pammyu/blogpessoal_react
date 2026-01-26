@@ -2,7 +2,7 @@ import { useContext, type ReactNode } from "react"
 import { AuthContext } from "../../contexts/AuthContext"
 
 import {
-  FacebookLogoIcon,
+  GithubLogoIcon,
   InstagramLogoIcon,
   LinkedinLogoIcon,
 } from "@phosphor-icons/react"
@@ -49,7 +49,7 @@ function Footer() {
               rel="noopener noreferrer"
               className="hover:scale-110 transition"
             >
-              <FacebookLogoIcon size={42} weight="bold" />
+              <GithubLogoIcon size={42} weight="bold" />
             </a>
           </div>
         </div>

@@ -10,7 +10,8 @@ function FormTema() {
   const navigate = useNavigate()
 
   const [isLoading, setIsLoading] = useState(false)
-  const [tema, setTema] = useState<Tema>({ id: 0, titulo: "", descricao: "" })
+
+  const [tema, setTema] = useState<Tema>({ id: 0, descricao: "" })
 
   const { id } = useParams<{ id: string }>()
   const { usuario, handleLogout } = useContext(AuthContext)
@@ -85,19 +86,6 @@ function FormTema() {
         </h1>
 
         <form onSubmit={salvarTema} className="flex flex-col gap-4">
-          <div className="flex flex-col gap-2">
-            <label className="text-purple-500 font-semibold">Título</label>
-            <input
-              type="text"
-              name="titulo"
-              value={tema.titulo}
-              onChange={atualizarEstado}
-              required
-              placeholder="Ex: Tecnologia, Front-end..."
-              className="border-2 border-purple-200 rounded-xl px-4 py-3 focus:ring-2 focus:ring-pink-300 outline-none"
-            />
-          </div>
-
           <div className="flex flex-col gap-2">
             <label className="text-purple-500 font-semibold">Descrição</label>
             <textarea

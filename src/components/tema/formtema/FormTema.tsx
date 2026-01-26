@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom"
 import { ClipLoader } from "react-spinners"
 import { AuthContext } from "../../../contexts/AuthContext"
 import type Tema from "../../../models/Tema"
-import { atualizar, buscar, cadastrar } from "../../../services/Service"
+import { atualizar, buscar, cadastrar } from "../../../services/api"
 import { ToastAlerta } from "../../../utils/ToastAlerta"
 
 function FormTema() {

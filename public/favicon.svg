@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Ícone fofo: gatinho na xícara">
+  <defs>
+    <style>
+      :root{
+        --bg:#FFF7EE;
+        --line:#242424;
+        --cup:#FFFFFF;
+        --tea:#FFD7A8;
+        --accent:#FF7A90;
+      }
+    </style>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="8" result="b"/>
+      <feOffset dy="10" result="o"/>
+      <feColorMatrix in="o" type="matrix"
+        values="0 0 0 0 0
+                0 0 0 0 0
+                0 0 0 0 0
+                0 0 0 .22 0" result="s"/>
+      <feMerge>
+        <feMergeNode in="s"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- background -->
+  <rect width="512" height="512" rx="120" fill="var(--bg)"/>
+
+  <g filter="url(#shadow)" stroke="var(--line)" stroke-width="14" stroke-linecap="round" stroke-linejoin="round">
+    <!-- steam -->
+    <path d="M176 142 C156 122 156 102 176 82" fill="none" opacity="0.55"/>
+    <path d="M256 142 C236 122 236 102 256 82" fill="none" opacity="0.55"/>
+    <path d="M336 142 C316 122 316 102 336 82" fill="none" opacity="0.55"/>
+
+    <!-- cup body -->
+    <path d="M140 240
+             C140 206 168 178 202 178
+             H310
+             C344 178 372 206 372 240
+             V310
+             C372 360 332 400 282 400
+             H230
+             C180 400 140 360 140 310
+             Z"
+          fill="var(--cup)"/>
+
+    <!-- tea surface -->
+    <path d="M172 236
+             C172 216 188 200 208 200
+             H304
+             C324 200 340 216 340 236
+             C340 256 324 270 304 270
+             H208
+             C188 270 172 256 172 236Z"
+          fill="var(--tea)"/>
+
+    <!-- handle -->
+    <path d="M372 252
+             C420 252 436 286 436 312
+             C436 346 412 372 382 372
+             C366 372 356 366 348 360"
+          fill="none"/>
+
+    <!-- cat head peeking -->
+    <path d="M206 236
+             C194 214 176 206 164 214
+             C156 190 172 170 196 172
+             C208 154 232 150 256 162
+             C280 150 304 154 316 172
+             C340 170 356 190 348 214
+             C336 206 318 214 306 236"
+          fill="var(--cup)"/>
+
+    <!-- ears -->
+    <path d="M196 186 L176 210 L210 206 Z" fill="var(--cup)"/>
+    <path d="M316 186 L336 210 L302 206 Z" fill="var(--cup)"/>
+
+    <!-- face -->
+    <circle cx="226" cy="230" r="10" fill="var(--line)" stroke="none"/>
+    <circle cx="286" cy="230" r="10" fill="var(--line)" stroke="none"/>
+    <path d="M256 244 C246 244 246 258 256 258 C266 258 266 244 256 244Z"
+          fill="var(--accent)" stroke="none"/>
+    <path d="M240 266 C252 276 260 276 272 266" fill="none"/>
+
+    <!-- whiskers -->
+    <path d="M214 250 L178 242" fill="none"/>
+    <path d="M214 266 L178 270" fill="none"/>
+    <path d="M298 250 L334 242" fill="none"/>
+    <path d="M298 266 L334 270" fill="none"/>
+
+    <!-- saucer -->
+    <path d="M132 408
+             C160 438 214 456 256 456
+             C298 456 352 438 380 408"
+          fill="none"/>
+
+    <!-- tiny heart detail -->
+    <path d="M256 316
+             C244 304 226 312 232 330
+             C238 350 256 360 256 360
+             C256 360 274 350 280 330
+             C286 312 268 304 256 316Z"
+          fill="var(--accent)"/>
+  </g>
+</svg>

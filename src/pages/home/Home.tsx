@@ -1,89 +1,35 @@
-import React from 'react'
+import ListaPostagem from '../../components/postagem/listapostagem/ListaPostagem';
+import ModalPostagem from '../../components/postagem/modalpostagem/ModalPostagem';
+import BannerHome from './Banner.png'
 
 function Home() {
-    return (
-        <>
-            <div style={{
-                backgroundColor: '#fb6da6',
-                display: 'flex',
-                justifyContent: 'center'
-            }}
-        > 
-            <div 
-                style={{
-                    display: 'grid',
-                    gridTemplateColumns: '1fr 1fr',
-                    color: 'white',
-                    width: '100%',
-                    maxWidth: '1280px',
-                }}
-            > 
-                <div
-                    style={{
-                        display: 'flex',
-                        flexDirection: 'column',
-                        gap: '1rem',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        paddingTop: '1rem',
-                        paddingBottom: '1rem'
-                    }}
-                >
-                    <h2
-                        style={{
-                            fontSize: '3rem',
-                            fontWeight: 'bold'
-                        }}
-                    > 
-                        Seja Bem-Vinde!
-                    </h2>
+  return (
+    <>
+      <main className=" w-full min-h-screen bg-pink-200 flex justify-center">
+        <section className="container grid grid-cols-2 text-white">
+          <article className=" text-2xl font-bold bg-gradient-to-r from-pink-400 to-purple-400 bg-clip-text text-transparent to-purple-300 flex flex-col gap-4 items-center justify-center py-4">
+              <h2 className="text-center text-5xl font-bold leading-tight">
+                
+                Seja bem-vindo ao Blog Pink Code!
+                </h2>
+                
+              <p className="text-purple-500 text-xl">
+                Onde aprender também faz parte do código 💗
+                </p>      
 
-                    <p
-                        style={{
-                            fontSize: '1.25rem',
-                        }}
-                    >
-                        Expresse aqui seus pensamentos e opiniões
-                    </p>
-                    
-                    <div 
-                        style={{
-                            display: 'flex',
-                            justifyContent: 'space-around',
-                            gap: '1rem'
-                        }}
-                    >
-                        <div
-                            style={{
-                                borderRadius: '0.5rem',
-                                color: 'white',
-                                border: '2px solid white',
-                                padding: '0.5rem 1rem'
-                            }}
-                        >
-                            Nova Postagem
-                        </div>
-                    </div>
-                </div>           
-        
-                <div
-                    style={{
-                        display: 'flex',
-                        justifyContent: 'center',
-                    }}
-                >
-                        <img
-                            src='https://i.imgur.com/fyfri1v.png'
-                            alt='Imagem Página Home'
-                            style={{
-                                width: '66%'
-                            }}
-                        />
-                    </div>
-                </div>
-            </div>
-        </>
-    )
+              <ModalPostagem />
+          </article>
+
+          <figure className="flex justify-center items-center">
+            <img src={BannerHome} alt="Ilustração de uma mulher programando" className="w-4/5"/>
+          </figure>
+
+        </section>
+      </main>
+
+
+      <ListaPostagem />
+    </>
+  );
 }
-
-export default Home
+export default Home;
